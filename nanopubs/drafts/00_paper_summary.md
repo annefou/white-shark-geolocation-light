@@ -2,13 +2,13 @@
 
 > This is a working scratchpad for the paper-analysis phase. The output of this file feeds the Quote / AIDA / Claim drafts. It is not itself a nanopub.
 
-**Reference paper:** {{PAPER_TITLE}}
+**Reference paper:** A biologging database of juvenile white sharks from the northeast Pacific
 
-**DOI:** {{PAPER_DOI}}
+**DOI:** 10.1038/s41597-022-01235-3
 
 **Authors:** _add._
 
-**Year:** {{PAPER_YEAR}}
+**Year:** 2022
 
 ## Headline claim
 

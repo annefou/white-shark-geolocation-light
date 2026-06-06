@@ -1,13 +1,13 @@
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
-  "name": "{{REPO_NAME}}",
-  "description": "{{REPO_DESCRIPTION}}",
+  "name": "white-shark-geolocation-light",
+  "description": "An independent, fully-open follow-up that adds open light-level geolocation to the pangeo-fish white-shark replication (O'Sullivan et al. 2022), testing whether the dominant GPE3 signal brings the fitted Brownian σ off its bound and reduces median error against a held-out Argos referee; extends the original FORRT chain via CiTO extends.",
   "version": "0.1.0",
-  "dateCreated": "{{RELEASE_DATE}}",
-  "dateModified": "{{RELEASE_DATE}}",
+  "dateCreated": "2026-06-06",
+  "dateModified": "2026-06-06",
   "license": "https://spdx.org/licenses/MIT",
-  "codeRepository": "https://github.com/{{REPO_ORG}}/{{REPO_NAME}}",
+  "codeRepository": "https://github.com/annefou/white-shark-geolocation-light",
   "identifier": "{{ZENODO_DOI}}",
   "@id": "{{ZENODO_DOI}}",
   "programmingLanguage": {
@@ -19,12 +19,12 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "{{AUTHOR_GIVEN}}",
-      "familyName": "{{AUTHOR_FAMILY}}",
-      "@id": "{{AUTHOR_ORCID}}",
+      "givenName": "Anne",
+      "familyName": "Fouilloux",
+      "@id": "https://orcid.org/0000-0002-1784-2920",
       "affiliation": {
         "@type": "Organization",
-        "name": "{{AUTHOR_AFFILIATION}}"
+        "name": "LifeWatch ERIC"
       }
     }
   ],
@@ -37,9 +37,9 @@
   ],
   "referencePublication": {
     "@type": "ScholarlyArticle",
-    "name": "{{PAPER_TITLE}}",
-    "datePublished": "{{PAPER_YEAR}}",
-    "@id": "https://doi.org/{{PAPER_DOI}}"
+    "name": "A biologging database of juvenile white sharks from the northeast Pacific",
+    "datePublished": "2022",
+    "@id": "https://doi.org/10.1038/s41597-022-01235-3"
   },
   "isPartOf": {
     "@type": "Organization",

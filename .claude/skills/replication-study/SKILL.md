@@ -9,7 +9,7 @@ You're orchestrating a complete FORRT replication study from the freshly-initial
 
 ## Preflight — Science Live API key
 
-Two of the skills this orchestrator dispatches to (`/import-from-nanopub`, `/verify-chain`) call Science Live's `/np/constellation` endpoint, which requires authentication. Before you start any phase that needs them — Phase 0 (if `{{PRIOR_CHAIN_URI}}` is set) and Phase 5 (final verification) — confirm the key is exported:
+Two of the skills this orchestrator dispatches to (`/import-from-nanopub`, `/verify-chain`) call Science Live's `/np/constellation` endpoint, which requires authentication. Before you start any phase that needs them — Phase 0 (if `https://w3id.org/sciencelive/np/RAnqtFUZHfmW7Dtmf3bcTQtjDAfrq5IGV4xQ8guW8L3vY` is set) and Phase 5 (final verification) — confirm the key is exported:
 
 ```bash
 test -n "$SCIENCELIVE_API_KEY" || echo "SCIENCELIVE_API_KEY not set — needed for /import-from-nanopub and /verify-chain"
