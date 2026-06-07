@@ -54,5 +54,5 @@ The published chain is listed in [`nanopubs/PUBLISHED.md`](nanopubs/PUBLISHED.md
 
 If you use this work, please cite both:
 
-- This software: [`CITATION.cff`](CITATION.cff) → DOI [{{ZENODO_DOI}}]({{ZENODO_DOI}}).
+- This software: [`CITATION.cff`](CITATION.cff) → DOI [10.5281/zenodo.20585041](https://doi.org/10.5281/zenodo.20585041).
 - The original paper: [10.1038/s41597-022-01235-3](https://doi.org/10.1038/s41597-022-01235-3).

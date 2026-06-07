@@ -8,8 +8,8 @@
   "dateModified": "2026-06-07",
   "license": "https://spdx.org/licenses/MIT",
   "codeRepository": "https://github.com/annefou/white-shark-geolocation-light",
-  "identifier": "{{ZENODO_DOI}}",
-  "@id": "{{ZENODO_DOI}}",
+  "identifier": "https://doi.org/10.5281/zenodo.20585041",
+  "@id": "https://doi.org/10.5281/zenodo.20585041",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "Python",
