@@ -21,7 +21,7 @@
 One empirical finding; no "and" linking two findings; ends with a full stop.
 
 ```
-Light-level data recorded by pop-up archival tags yield daily geolocation estimates of juvenile white sharks in the northeast Pacific.
+Pop-up archival tag light-level data yield accurate daily geolocations of juvenile white sharks in the northeast Pacific.
 ```
 
 ### Select related topics/tags (dropdown, optional)
