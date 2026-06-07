@@ -48,19 +48,10 @@ jobs:
           locked: true
           cache: true
 
-      # ----- Copernicus Marine credentials (GLORYS temperature factor) -----
-      # The maintainer MUST set the repo secret COPERNICUS_CREDENTIALS_BASE64 to a
-      # base64-encoded INI file with [credentials]\nusername=...\npassword=... .
-      # Without it, notebook 01's GLORYS download fails (the rest of the pipeline
-      # still needs the reference models). See README / DOMAIN.md.
-      - name: Set up Copernicus Marine credentials
-        if: steps.guard.outputs.skip != 'true' && env.COPERNICUS_CREDENTIALS_BASE64 != ''
-        env:
-          COPERNICUS_CREDENTIALS_BASE64: ${{ secrets.COPERNICUS_CREDENTIALS_BASE64 }}
-        run: |
-          mkdir -p ~/.copernicusmarine
-          echo "$COPERNICUS_CREDENTIALS_BASE64" | base64 -d \
-            > ~/.copernicusmarine/.copernicusmarine-credentials
+      # No Copernicus Marine credentials are decoded here: CI does not execute the
+      # GLORYS download (the smoke is a dry-run; the full pipeline runs on dedicated
+      # compute with local credentials). Keeping the secret out of CI avoids needless
+      # exposure on a public-repo runner.
 
       # ----- data caching (uncomment + adjust path/key) -----
       #
