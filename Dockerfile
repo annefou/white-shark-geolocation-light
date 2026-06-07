@@ -13,8 +13,10 @@ RUN pixi install --locked
 
 COPY . /app
 
-# Mount any required credentials at runtime, e.g.:
-#   docker run -v ~/.cdsapirc:/home/mambauser/.cdsapirc white-shark-geolocation-light
-# See data/README.md for per-dataset credential setup.
+# The GLORYS temperature factor (notebook 01) needs a Copernicus Marine
+# credential. Mount it at runtime, e.g.:
+#   docker run -v ~/.copernicusmarine:/root/.copernicusmarine \
+#       white-shark-geolocation-light
+# See README.md / data/README.md for per-dataset credential setup.
 
 CMD ["pixi", "run", "snakemake", "--cores", "1"]

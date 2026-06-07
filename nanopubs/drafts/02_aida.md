@@ -1,57 +1,56 @@
 # 02 — AIDA Sentence
 
-> Run the pre-flight checklist in `docs/forrt-form-fields.md` § Pre-flight checklist before drafting.
+> Pre-flight done. AIDA = one Atomic, Independent, Declarative, Absolute empirical
+> claim — the paper's geolocation claim that this replication tests (NOT the
+> replication's result; that lives in the Outcome).
 
 **Form heading:** *"AIDA Sentence — Make structured scientific claims following the AIDA model"*
+
+## Documented field list (from `docs/forrt-form-fields.md` § AIDA sentence)
+
+1. AIDA sentence (ending with a full stop) — textarea, **required**
+2. Select related topics/tags — dropdown, *optional*
+3. Relates to this nanopublication — text input, **required** (the Quote URI from step 01)
+4. Supported by datasets — repeatable group, *optional*
+5. Supported by other publications — repeatable group, *optional*
 
 ## Field-by-field draft
 
 ### AIDA sentence (textarea, required)
 
-Atomic, Independent, Declarative, Absolute. One empirical finding. Must end with a full stop.
-
-> _If your draft AIDA contains "and" linking two distinct findings, split into two AIDA nanopubs._
+One empirical finding; no "and" linking two findings; ends with a full stop.
 
 ```
-
+Light-level data recorded by pop-up archival tags yield daily geolocation estimates of juvenile white sharks in the northeast Pacific.
 ```
 
 ### Select related topics/tags (dropdown, optional)
 
-Predefined topic vocabulary — list the labels you intend to pick from the dropdown.
+Pick from the platform's predefined vocabulary. Suggested labels if available:
 
 ```
-
+geolocation; biologging; marine animal tracking
 ```
+
+*(skip if none of these are in the dropdown — optional field)*
 
 ### Relates to this nanopublication (text input, required)
 
-URI of the nanopub the AIDA derives from.
-
-- For paper-rooted chains: the Quote-with-comment URI (from step 01).
-- For question-rooted chains: the PICO or PCC URI (from step 01).
-
-Pull the URI from `nanopubs/PUBLISHED.md`.
+URI of the Quote-with-comment published in step 01. Pull from `nanopubs/PUBLISHED.md`.
 
 ```
-
+_not yet published — fill from nanopubs/PUBLISHED.md step 01 before publishing this AIDA_
 ```
 
 ### Supported by datasets (repeatable group, optional)
 
-DOIs/URLs of datasets that ground the AIDA claim.
+The CC-BY biologging archive that grounds the claim:
 
-- _DOI 1: ___
-- _DOI 2: ___
+- DOI 1: `https://doi.org/10.24431/rw1k6c3`
 
-### Supported by other publications (repeatable group, optional)
+### Supported by other publications (optional)
 
-DOIs/URLs of publications that support the AIDA claim — e.g. peer-reviewed methods papers, or the original paper if not already cited via the Quote.
-
-- _DOI 1: ___
-- _DOI 2: ___
-
-> **Known platform bug (2026-04-26):** if both *Supported by datasets* AND *Supported by other publications* are populated and publishing fails, fall back to publishing this AIDA via Nanodash. The URI namespace becomes `https://w3id.org/np/...` (still valid and citable).
+*(skip — the source paper is already cited via the Quote in step 01; per the known platform bug note, leaving this empty also avoids the datasets+publications publish failure)*
 
 ## Publication note
 

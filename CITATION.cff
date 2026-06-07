@@ -32,6 +32,21 @@ references:
         given-names: "John"
     year: "2022"
     doi: "10.1038/s41597-022-01235-3"
+  - type: data
+    title: "A biologging database of juvenile white sharks from the Northeast Pacific, 2001-2020"
+    doi: "10.24431/rw1k6c3"
+    notes: "Input biologging archive (light, depth-temperature, GPE3, Argos)."
+  - type: data
+    title: "Global Ocean Physics Reanalysis (GLORYS12V1)"
+    authors:
+      - name: "E.U. Copernicus Marine Service Information"
+    notes: "Temperature emission ocean fields (datasets cmems_mod_glo_phy_my_0.083deg_P1D-m_202311 and ..._static_202311), downloaded over the species-range box lon[-125,-106] lat[22,38]."
+  - type: data
+    title: "ETOPO 2022 15 Arc-Second Global Relief Model"
+    authors:
+      - name: "NOAA National Centers for Environmental Information"
+    doi: "10.25921/fd45-gt74"
+    notes: "Land mask + bathymetric depth floor (regional NE-Pacific subset)."
   # Prior FORRT chain this replication extends or qualifies. The URI below
   # is the canonical persistent pointer to the prior constellation; the
   # imported summary itself (CHAIN_SUMMARY.md, constellation.json, cached

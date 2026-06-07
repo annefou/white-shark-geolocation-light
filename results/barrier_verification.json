@@ -1,0 +1,12 @@
+{
+  "cross_pair_separation_km": 195.0304190335545,
+  "cross_segment_crosses_land": true,
+  "cross_weight_plain": 0.00045770432185381017,
+  "cross_weight_barrier": 0.0,
+  "row_sum_min": 0.9999999999999918,
+  "row_sum_max": 1.0000000000000098,
+  "open_segment_crosses_land": false,
+  "open_weight_plain": 0.0007685589920988495,
+  "open_weight_barrier": 0.0008836937629037775,
+  "fallback_rows_verify": 0
+}

@@ -1,8 +1,16 @@
 # 06 — CiTO Citation
 
-> Run the pre-flight checklist in `docs/forrt-form-fields.md` § Pre-flight checklist before drafting.
+> Pre-flight done. Citation intention derived from the Outcome's validation status
+> (PartiallySupported → `qualifies`). This is the final, apex step of the chain.
 
 **Description:** *"Declare citations between papers or other works, using Citation Typing Ontology"*
+
+## Documented field list (from `docs/forrt-form-fields.md` § Citation with CiTO)
+
+1. Identifier for the citing creative work — text input, **required** (the Outcome URI from step 05)
+2. List citations — repeatable group, **required ≥1**
+   - Citation Type — dropdown
+   - DOI or other URL of the cited work — text input
 
 ## Field-by-field draft
 
@@ -11,7 +19,7 @@
 URI of the Outcome published in step 05. Pull from `nanopubs/PUBLISHED.md`.
 
 ```
-
+_not yet published — fill from nanopubs/PUBLISHED.md step 05 before publishing this Citation_
 ```
 
 ### List citations (repeatable group, required ≥1)
@@ -20,19 +28,11 @@ URI of the Outcome published in step 05. Pull from `nanopubs/PUBLISHED.md`.
 
 ##### Citation Type (dropdown)
 
-Choose based on the Outcome's validation status:
+From the Outcome's `PartiallySupported` status:
 
-- Validated → `confirms`
-- PartiallySupported → `qualifies`
-- Contradicted → `disputes`
-
-For question-rooted chains where there is no original paper to confirm/dispute, use `usesMethodIn` or `citesAsAuthority` for the methodology paper(s).
-
-> **Note:** `replicates` is NOT in the Science Live dropdown (despite existing in upstream CiTO). When citing a notebook/tutorial that was directly reused, use **`credits`** instead.
-
-```
-
-```
+- [ ] confirms (Validated)
+- [x] **qualifies** (PartiallySupported)
+- [ ] disputes (Contradicted)
 
 ##### DOI or other URL of the cited work (text input)
 
@@ -42,15 +42,20 @@ https://doi.org/10.1038/s41597-022-01235-3
 
 #### Additional citations (optional)
 
-If the Outcome cites methods papers, related replications, or upstream tools, add them here.
+The upstream FORRT chain this study extends (the temperature-only replication) — cite it so
+the two chains are linked. Use `qualifies` or `citesAsRelated` as the platform allows:
 
-- _Type: ___ → URL: ___
+- Type: `qualifies` (or `citesAsRelated`) → URL: `https://w3id.org/sciencelive/np/RAnqtFUZHfmW7Dtmf3bcTQtjDAfrq5IGV4xQ8guW8L3vY`
+
+The upstream biologging dataset (optional):
+
+- Type: `citesAsDataSource` → URL: `https://doi.org/10.24431/rw1k6c3`
 
 ## Publication note
 
-After publishing, paste the resulting URI into `nanopubs/PUBLISHED.md` step 06.
+After publishing, paste the resulting URI into `nanopubs/PUBLISHED.md` step 06. This
+completes the six-step FORRT chain.
 
-This completes the six-step FORRT chain. Optional next layers:
-
-- **Research Software** (`drafts/07_research_software.md`) — if the repo *produces* a reusable software artefact.
-- **Research Synthesis** (`drafts/08_synthesis.md`) — if this chain is one of several testing facets of a shared property.
+Optional next layer: **Research Software** (`drafts/07_research_software.md`) — only if the
+repo produces a reusable, installable tool (it currently produces a one-off replication, so
+this is likely not needed).

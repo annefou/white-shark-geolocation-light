@@ -28,6 +28,26 @@ pixi run snakemake --cores 1
 
 (Pixi resolves `pixi.toml` against the per-platform `pixi.lock`, installs the env under `.pixi/`, and provides `pixi run` for any task without needing an `activate` step.)
 
+### Copernicus Marine credential (required for the temperature factor)
+
+The temperature emission matches the tags' dive-temperature record against **GLORYS12V1** ocean reanalysis, downloaded by notebook 01 via `copernicusmarine`. You need a free [Copernicus Marine](https://marine.copernicus.eu/) account. Create the credentials file once:
+
+```bash
+pixi run copernicusmarine login   # writes ~/.copernicusmarine/.copernicusmarine-credentials
+```
+
+In **CI**, set the repository secret **`COPERNICUS_CREDENTIALS_BASE64`** to a base64-encoded INI file:
+
+```
+[credentials]
+username=YOUR_USERNAME
+password=YOUR_PASSWORD
+```
+
+(`base64 -w0 the-ini-file`). The `ci.yml` and `jupyter-book.yml` workflows decode it to `~/.copernicusmarine/.copernicusmarine-credentials` before running the pipeline. The light, bathymetry (ETOPO) and biologging (DataONE) downloads need **no** credentials.
+
+The GLORYS download is **idempotent** — tags whose `data/clean/reference_model_<tag>_gulfext.nc` reference model is already on disk are skipped, so a re-run does not re-fetch.
+
 Or with Docker:
 
 ```bash

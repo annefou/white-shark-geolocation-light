@@ -23,6 +23,13 @@ xarray = ">=2024.6"
 scipy = "*"
 matplotlib = "*"
 pyarrow = "*"
+# --- data download (DataONE REST API for DOI 10.24431/rw1k6c3) ---
+requests = "*"
+# --- GLORYS ocean reanalysis download (Copernicus Marine Service) ---
+# Supplies the thetao+zos reference fields for the temperature emission. Needs a
+# Copernicus Marine account; credentials live at
+# ~/.copernicusmarine/.copernicusmarine-credentials (see README / DOMAIN.md).
+copernicusmarine = "*"
 # --- notebook execution + Jupyter Book ---
 jupytext = "*"
 jupyterlab = "*"
@@ -30,27 +37,39 @@ nbclient = "*"
 ipykernel = "*"
 # --- pipeline driver ---
 snakemake = "*"
-# --- replace/extend with the deps your replication needs ---
-# Examples (uncomment as needed):
-# statsmodels = "*"          # GLM/GLMM regression
-# scikit-learn = "*"         # classical ML
-# pyproj = "*"               # CRS + map projections
-# cartopy = "*"              # geographic plotting
-# netcdf4 = "*"              # NetCDF I/O — preferred over .npz for arrays (see DOMAIN.md)
-# zarr = "*"                 # Zarr — preferred for arrays >2 GB or cloud-archived (see DOMAIN.md)
-# cdsapi = "*"               # Copernicus Climate Data Store
-# copernicusmarine = "*"     # Copernicus Marine Service
-# healpix-geo = "*"          # HEALPix on geo data — preferred (use nest=True — see DOMAIN.md)
-# healpy = "*"               # HEALPix on pure-sphere (astrophysics) only
-# rasterio = "*"             # raster I/O
-# geopandas = "*"            # vector I/O
-# dask = "*"                 # out-of-core / parallel
+# --- light-level geolocation (pangeo-fish HMM with a solar-elevation emission) ---
+astropy = "*"              # solar position / sunrise-sunset model for the light emission
+dask = "*"                 # out-of-core / parallel (pangeo-fish state-space arrays)
+numba = "*"                # pangeo-fish HMM kernels are numba-jitted
+pint = "*"                 # units for the sigma-bound / speed prior in 03_analysis
+toolz = "*"                # tlz.functoolz.curry for the HMM predictor factory
+sparse = "*"               # sparse.COO rebuild in the land-barrier movement kernel
+netcdf4 = "*"              # NetCDF I/O — preferred over .npz for arrays (see DOMAIN.md)
+zarr = "*"                 # Zarr — preferred for arrays >2 GB or cloud-archived (see DOMAIN.md)
+cartopy = "*"              # geographic plotting (track maps)
+pyproj = "*"               # CRS + great-circle distances
+xhistogram = "*"           # pangeo-fish emission-likelihood histogramming
+flox = "*"                 # grouped reductions used by pangeo-fish
+# healpy is pulled in transitively by pangeo-fish; install from conda-forge so
+# its C++ extension is prebuilt (the PyPI sdist fails to compile on macOS).
+healpy = "*"
+# pangeo_fish.helpers imports these viz deps at module import time.
+holoviews = "*"
+hvplot = "*"
+cmocean = "*"
+geoviews = "*"
+# The light emission matches an ASTRONOMICAL solar-elevation model (astropy); the
+# temperature emission additionally matches GLORYS12V1 ocean fields downloaded via
+# copernicusmarine (above), so a Copernicus Marine credential IS required for the
+# temperature factor (notebook 01). The bathymetry (ETOPO) needs no credential.
 
-# Pip-only deps go in [pypi-dependencies]. Conda-forge is preferred where available.
-# [pypi-dependencies]
-# pygbif = "*"               # GBIF occurrences
-# polytope-client = "*"      # Destination Earth Climate DT
-# earthkit-data = "*"
+[pypi-dependencies]
+# pangeo-fish (the open geolocation HMM) is PyPI-only; not on conda-forge.
+pangeo-fish = "*"
+# healpix-geo (EOPF-DGGS, geo-aware HEALPix; NESTED ordering — see DOMAIN.md).
+healpix-geo = "*"
+# xdggs gives pangeo-fish its HEALPix grid backend.
+xdggs = "*"
 
 [feature.docs.dependencies]
 mystmd = "*"

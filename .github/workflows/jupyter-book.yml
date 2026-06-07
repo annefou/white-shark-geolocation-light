@@ -66,6 +66,18 @@ jobs:
           cache: true
           environments: docs
 
+      # Copernicus Marine credentials for notebook 01's GLORYS download. The
+      # maintainer MUST set the repo secret COPERNICUS_CREDENTIALS_BASE64
+      # (base64-encoded INI: [credentials]\nusername=...\npassword=...).
+      - name: Set up Copernicus Marine credentials
+        if: steps.guard.outputs.skip != 'true' && env.COPERNICUS_CREDENTIALS_BASE64 != ''
+        env:
+          COPERNICUS_CREDENTIALS_BASE64: ${{ secrets.COPERNICUS_CREDENTIALS_BASE64 }}
+        run: |
+          mkdir -p ~/.copernicusmarine
+          echo "$COPERNICUS_CREDENTIALS_BASE64" | base64 -d \
+            > ~/.copernicusmarine/.copernicusmarine-credentials
+
       - name: Convert .py notebooks to .ipynb
         if: steps.guard.outputs.skip != 'true'
         run: |
