@@ -13,7 +13,7 @@
 Zenodo concept DOI URL when available, or a GitHub URL. Full URL form.
 
 ```
-{{ZENODO_DOI}}
+https://doi.org/10.5281/zenodo.20585041
 ```
 
 ### Software Title (text input, required)
