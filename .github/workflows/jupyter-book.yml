@@ -78,21 +78,16 @@ jobs:
           echo "$COPERNICUS_CREDENTIALS_BASE64" | base64 -d \
             > ~/.copernicusmarine/.copernicusmarine-credentials
 
-      - name: Convert .py notebooks to .ipynb
+      # Render the notebooks as code pages WITHOUT executing them: the analysis
+      # downloads ~2.5 GB of GLORYS and runs a multi-hour HMM per tag, which is not
+      # viable on a free runner. The headline figures are committed to the repo and
+      # embedded in index.md, so the book is meaningful without re-execution. To
+      # regenerate everything, run `pixi run snakemake --cores 1` on dedicated compute.
+      - name: Convert .py notebooks to .ipynb (not executed)
         if: steps.guard.outputs.skip != 'true'
         run: |
           for nb in notebooks/*.py; do
             pixi run jupytext --to notebook "$nb"
-          done
-
-      # Glob, not a hard-coded list — new notebooks are picked up automatically.
-      - name: Execute notebooks
-        if: steps.guard.outputs.skip != 'true'
-        run: |
-          for nb in notebooks/*.ipynb; do
-            echo "::group::Executing $nb"
-            pixi run jupyter execute --inplace "$nb"
-            echo "::endgroup::"
           done
 
       - name: Build MyST site

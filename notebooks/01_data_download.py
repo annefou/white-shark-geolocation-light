@@ -239,22 +239,22 @@ BATHY_DOMAIN = {"lon": (-130.0, -105.0), "lat": (18.0, 40.0)}
 if BATHY_NC.exists():
     print(f"  cached: {BATHY_NC.name} ({BATHY_NC.stat().st_size} bytes)")
 else:
-    import xarray as xr  # local import: only this step needs xarray/OPeNDAP
+    # Direct ERDDAP griddap NetCDF subset over plain HTTPS — NOT OPeNDAP. The
+    # netCDF4 build on CI runners often lacks DAP support, so xr.open_dataset() on
+    # the OPeNDAP endpoint fails with "NetCDF: I/O failure". ERDDAP serves the
+    # server-side lat/lon subset directly as a downloadable .nc file.
+    import requests  # local import: only this step needs it here
 
-    print(f"Downloading ETOPO 2022 15s subset {BATHY_DOMAIN} (OPeNDAP)...")
-    ds = xr.open_dataset(BATHY_URL)
-    sub = ds["z"].sel(
-        latitude=slice(*BATHY_DOMAIN["lat"]),
-        longitude=slice(*BATHY_DOMAIN["lon"])).load()
-    out = sub.to_dataset(name="z")
-    out.attrs.update({
-        "source": BATHY_SOURCE,
-        "source_url": BATHY_URL + ".html",
-        "resolution": "15 arc-second (~450 m)",
-        "domain": "lon -130..-105, lat 18..40 (NE Pacific white shark domain)",
-    })
-    out.to_netcdf(BATHY_NC)
-    print(f"  downloaded: {BATHY_NC.name} ({BATHY_NC.stat().st_size} bytes)")
+    lat0, lat1 = BATHY_DOMAIN["lat"]
+    lon0, lon1 = BATHY_DOMAIN["lon"]
+    query = f"z%5B({lat0}):1:({lat1})%5D%5B({lon0}):1:({lon1})%5D"
+    nc_url = f"{BATHY_URL}.nc?{query}"
+    print(f"Downloading ETOPO 2022 15s subset {BATHY_DOMAIN} (ERDDAP .nc)...")
+    resp = requests.get(nc_url, timeout=600)
+    resp.raise_for_status()
+    BATHY_NC.write_bytes(resp.content)
+    print(f"  downloaded: {BATHY_NC.name} ({BATHY_NC.stat().st_size} bytes); "
+          f"source: {BATHY_SOURCE}")
 
 # %% [markdown]
 # ## Step 6 — GLORYS12V1 ocean reanalysis for the temperature emission

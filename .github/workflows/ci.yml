@@ -71,15 +71,10 @@ jobs:
       #     path: data/raw
       #     key: input-data-v1
 
-      - name: Run pipeline
+      # The full pipeline downloads ~2.5 GB of GLORYS ocean fields and fits a
+      # multi-hour HMM per tag — not viable on a free runner. CI validates that the
+      # pinned env builds (setup-pixi --locked above) and the Snakefile DAG resolves;
+      # the end-to-end reproduction runs on dedicated compute. See README.
+      - name: Validate pipeline DAG (dry run)
         if: steps.guard.outputs.skip != 'true'
-        run: pixi run snakemake --cores 1
-
-      - name: Upload results
-        if: always() && steps.guard.outputs.skip != 'true'
-        uses: actions/upload-artifact@v5
-        with:
-          name: ci-outputs
-          path: |
-            results/
-            figures/
+        run: pixi run snakemake --cores 1 -n
