@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "name": "white-shark-geolocation-light",
   "description": "An independent, fully-open follow-up that adds open light-level geolocation to the pangeo-fish white-shark replication (O'Sullivan et al. 2022), testing whether the dominant GPE3 signal brings the fitted Brownian σ off its bound and reduces median error against a held-out Argos referee; extends the original FORRT chain via CiTO extends.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dateCreated": "2026-06-06",
   "dateModified": "2026-06-07",
   "license": "https://spdx.org/licenses/MIT",
